@@ -28,7 +28,7 @@ export class AppComponent {
     ['G','I','L','R','U','W']
   ]
 
-  TIMELEFT: number = 240;
+  TIMELEFT: number = 180;
 
   timeleft: number;
   gameActive: boolean = false;
