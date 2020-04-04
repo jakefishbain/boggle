@@ -47,7 +47,6 @@ export class AppComponent {
       this.downloadTimer()
     } else {
       clearInterval(this.interval);
-
     }
   }
 
@@ -102,8 +101,26 @@ export class AppComponent {
       if(this.timeleft <= 0) {
         clearInterval(this.interval)
         this.gameActive = false
-        setTimeout(() => alert('Time\'s Up! ⏱'), 10)
+        setTimeout(() => this.notifyMe(), 10)
       }
     }, 1000);
+  }
+
+  notifyMe = () => {
+    if (!("Notification" in window)) {
+      alert('Time\'s Up! ⏱');
+    }
+    else if (Notification.permission === "granted") {
+      new Notification('Time\'s Up! ⏱');
+    }
+    else if (Notification.permission !== "denied") {
+      Notification.requestPermission().then(function (permission) {
+        if (permission === "granted") {
+          new Notification('Time\'s Up! ⏱');
+        }
+      });
+    } else {
+      alert('Time\'s Up! ⏱');
+    }
   }
 }
