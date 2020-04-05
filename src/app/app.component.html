@@ -3,7 +3,7 @@
     <div class="container">
       <h1 class="display-4 text-center">🐡GGLE</h1>
       <p class='text-center' (click)='createBoard()'>NEW GAME</p>
-      <p class='text-center' (click)='toggleBoard()'>{{ gameActive ? 'PAUSE' : 'SHOW BOARD' }}</p>
+      <p class='text-center' (click)='toggleBoard(board)'>{{ gameActive ? 'PAUSE' : 'SHOW BOARD' }}</p>
       <p class='text-center'>{{timeleft}}</p>
       <div *ngIf='!gameActive' class="text-center">
         <div class="btn-group" role="group" aria-label="Basic example">
@@ -16,6 +16,7 @@
       </div>
     </div>
   </div>
+  <div #board>
   <table class='mx-auto' *ngIf="gameActive; else instructions">
     <tbody>
       <tr *ngFor="let row of rows">
@@ -25,6 +26,7 @@
       </tr>
     </tbody>
   </table>
+  </div>
 </div>
 
 <ng-template #instructions>

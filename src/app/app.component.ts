@@ -26,13 +26,14 @@ export class AppComponent {
     this.createBoard()
   }
 
-  toggleBoard = () => {
+  toggleBoard = (el: HTMLElement) => {
     this.gameActive = !this.gameActive
     if(this.gameActive && this.timeleft > 0) {
       this.downloadTimer()
     } else {
       clearInterval(this.interval);
     }
+    el.scrollIntoView(true);
   }
 
   changeMode = (mode) => {
