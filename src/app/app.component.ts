@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { four_by_four, five_by_five } from './boards.js'
 
 @Component({
   selector: 'app-root',
@@ -9,26 +10,10 @@ import { Component, OnInit } from '@angular/core';
 
 export class AppComponent {
   rows: any = []
-  dice: any = [
-    ['A','A','C','I','O','T'],
-    ['A','B','I','L','T','Y'],
-    ['A','B','J','M','O','Q'],
-    ['A','C','D','E','M','P'],
-    ['A','C','E','L','R','S'],
-    ['A','D','E','N','V','Z'],
-    ['A','H','M','O','R','S'],
-    ['B','I','F','O','R','X'],
-    ['D','E','N','O','S','W'],
-    ['D','K','N','O','T','U'],
-    ['E','E','F','H','I','Y'],
-    ['E','G','K','L','U','Y'],
-    ['E','G','I','N','T','V'],
-    ['E','H','I','N','P','S'],
-    ['E','L','P','S','T','U'],
-    ['G','I','L','R','U','W']
-  ]
+  dice: any = four_by_four
+  mode: number = 4;
 
-  TIMELEFT: number = 180;
+  time_entered: number = 180;
 
   timeleft: number;
   gameActive: boolean = false;
@@ -37,7 +22,7 @@ export class AppComponent {
   constructor() {}
 
   ngOnInit() {
-    this.timeleft = this.TIMELEFT
+    this.timeleft = this.time_entered
     this.createBoard()
   }
 
@@ -50,6 +35,12 @@ export class AppComponent {
     }
   }
 
+  changeMode = (mode) => {
+    this.mode = mode
+    this.dice = mode === 4 ? four_by_four : five_by_five
+    this.createBoard()
+  }
+
   createBoard = () => {
     let usedDice = []
     let remainingDice = this.dice
@@ -58,11 +49,10 @@ export class AppComponent {
     let selectedDice = []
     clearInterval(this.interval)
     this.gameActive = false
-    this.timeleft = this.TIMELEFT
+    this.timeleft = this.time_entered
 
-    const times = 4
-    for(let i=0; i < times; i++){
-      for(let i=0; i < times; i++){
+    for(let i=0; i < this.mode; i++){
+      for(let i=0; i < this.mode; i++){
         let shuffler = Math.floor(Math.random() * remainingDice.length);
         let currentDice = remainingDice[shuffler]
         selectedDice.push(currentDice)

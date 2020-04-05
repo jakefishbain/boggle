@@ -1,0 +1,14 @@
+div.btn-group {
+  margin: 0 auto;
+  text-align: center;
+  width: inherit;
+  display: inline-block;
+}
+
+.jumbotron {
+  padding: 20px 0 20px 0;
+}
+
+.instructions {
+  font-family: Arial, Helvetica, sans-serif;
+}

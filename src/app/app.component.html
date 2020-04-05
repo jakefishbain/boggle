@@ -1,21 +1,37 @@
 <div>
-  <div class="jumbotron jumbotron-fluid w-100">
+  <div class="jumbotron jumbotron-fluid w-100" [ngClass]="{}">
     <div class="container">
       <h1 class="display-4 text-center">🐡GGLE</h1>
-      <p class='text-center' (click)='createBoard()'>RESET</p>
+      <p class='text-center' (click)='createBoard()'>NEW GAME</p>
       <p class='text-center' (click)='toggleBoard()'>{{ gameActive ? 'PAUSE' : 'SHOW BOARD' }}</p>
       <p class='text-center'>{{timeleft}}</p>
-
+      <div *ngIf='!gameActive' class="text-center">
+        <div class="btn-group" role="group" aria-label="Basic example">
+          <button type="button" [ngClass]="{'btn-primary': mode === 4, 'btn-secondary': mode === 5}" class="btn" (click)="changeMode(4)">4</button>
+          <button type="button" [ngClass]="{'btn-primary': mode === 5, 'btn-secondary': mode === 4}" class="btn" (click)="changeMode(5)">5</button>
+        </div>
+        <div class='pt-3'>
+          TIMER VALUE:&nbsp;<input type='number' style='width: 50px;' [(ngModel)]="time_entered"> secs
+        </div>
+      </div>
     </div>
   </div>
-  <!-- {{rows}} -->
-  <table class='mx-auto' *ngIf="gameActive">
+  <table class='mx-auto' *ngIf="gameActive; else instructions">
     <tbody>
       <tr *ngFor="let row of rows">
         <td *ngFor="let letter of row">
-          <h1 class='p-4 border border-primary rounded-lg text-center'>{{letter}}</h1>
+          <h1 [ngClass]="{'p-4': mode === 4, 'p-3': mode === 5}"class='border border-primary rounded-lg text-center'>{{letter}}</h1>
         </td>
       </tr>
     </tbody>
   </table>
 </div>
+
+<ng-template #instructions>
+  <div class='text-center container instructions'>
+    <p>Click SHOW BOARD to begin your game and timer</p>
+    <p>Click NEW GAME to reset and start a new game</p>
+    <p>Click 4/5 to change the mode (4x4 or 5x5)</p>
+    <span>Enter a new timer value</span><span class='mt-0 pt-0' style="font-size: 12px;">&nbsp;(will take effect after changing modes or clicking NEW GAME)</span>
+  </div>
+</ng-template>
