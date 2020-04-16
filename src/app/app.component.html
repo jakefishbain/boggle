@@ -17,15 +17,15 @@
     </div>
   </div>
   <div #board>
-  <table class='mx-auto' *ngIf="gameActive; else instructions">
-    <tbody>
-      <tr *ngFor="let row of rows">
-        <td *ngFor="let letter of row">
-          <h1 [ngClass]="{'p-4': mode === 4, 'p-3': mode === 5}"class='border border-primary rounded-lg text-center'>{{letter}}</h1>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+    <table class='mx-auto mb-5' *ngIf="gameActive; else instructions">
+      <tbody>
+        <tr *ngFor="let row of rows">
+          <td *ngFor="let letter of row">
+            <h1 [ngClass]="{'p-4': mode === 4, 'p-3': mode === 5}"class='border border-primary rounded-lg text-center'>{{letter}}</h1>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>
 
