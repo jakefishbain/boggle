@@ -1,5 +1,6 @@
 <div>
-  <div class="jumbotron jumbotron-fluid w-100" [ngClass]="{}">
+  <!-- HEADER -->
+  <!-- <div class="jumbotron jumbotron-fluid w-100" [ngClass]="{}">
     <div class="container">
       <h1 class="display-4 text-center">🐡GGLE</h1>
       <p class='text-center' (click)='createBoard()'>NEW GAME</p>
@@ -15,25 +16,46 @@
         </div>
       </div>
     </div>
+  </div> -->
+
+  <app-header></app-header>
+  <div class='mt-3 pt-2 text-center'>
+    <p *ngIf='!bs.gameActive' class='set_timer'><mdb-icon far icon="clock"></mdb-icon>&nbsp;<input class='flush' type='number' style='width: 62px;' [(ngModel)]="bs.time_entered">&nbsp;seconds</p>
+    <p *ngIf='bs.gameActive'>{{bs.timeleft}}</p>
   </div>
-  <div #board>
-    <table class='mx-auto mb-5' *ngIf="gameActive; else instructions">
+  <!-- BODY -->
+  <div class='mt-5' *ngIf="bs.gameActive; else instructions">
+    <table
+      class='mx-auto mb-2'
+      [ngClass]="{'animate__animated animate__wobble': bs.timeleft + 2 >= bs.time_entered }"
+    >
       <tbody>
-        <tr *ngFor="let row of rows">
+        <tr *ngFor="let row of bs.rows">
           <td *ngFor="let letter of row">
-            <h1 [ngClass]="{'p-4': mode === 4, 'p-3': mode === 5}"class='border border-primary rounded-lg text-center'>{{letter}}</h1>
+            <h1
+              class='letter border border-primary rounded-lg text-center'
+              [ngClass]="{'animate__animated animate__rotateIn': bs.timeleft + 2 >= bs.time_entered }"
+              [ngStyle]="{'padding': board_size +'px'}"
+            >{{letter}}</h1>
           </td>
         </tr>
       </tbody>
     </table>
+    <div class='text-center'>
+      <mat-slider min="10" max="50" step="1" [value]='board_size' (change)='onSlide($event)'></mat-slider>
+    </div>
   </div>
 </div>
 
 <ng-template #instructions>
-  <div class='text-center container instructions'>
-    <p>Click SHOW BOARD to begin your game and timer</p>
-    <p>Click NEW GAME to reset and start a new game</p>
-    <p>Click 4/5 to change the mode (4x4 or 5x5)</p>
-    <span>Enter a new timer value</span><span class='mt-0 pt-0' style="font-size: 12px;">&nbsp;(will take effect after changing modes or clicking NEW GAME)</span>
-  </div>
+  <mdb-card class="mx-auto mt-2" bgColor="bg-warning" style="max-width: 20rem">
+    <mdb-card-body>
+      <div class='text-center container instructions'>
+        <p>Click SHOW BOARD to begin your game and timer</p>
+        <p>Click NEW GAME to reset and start a new game</p>
+        <p>Click 4/5 to change the mode (4x4 or 5x5)</p>
+        <span>Enter a new timer value</span><span class='mt-0 pt-0' style="font-size: 12px;">&nbsp;(will take effect after changing modes or clicking NEW GAME)</span>
+      </div>
+    </mdb-card-body>
+  </mdb-card>
 </ng-template>
