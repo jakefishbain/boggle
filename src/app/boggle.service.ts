@@ -21,7 +21,7 @@ export class BoggleService {
   toggleBoard = () => {
     this.gameActive = !this.gameActive
     if(this.gameActive && this.timeleft > 0) {
-      setTimeout( () => this.downloadTimer(), 500)
+      setTimeout( () => this.downloadTimer(), 1000)
     } else {
       clearInterval(this.interval);
     }
