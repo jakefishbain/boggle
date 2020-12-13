@@ -7,7 +7,7 @@ export const five_by_five = [
 	['A','E','E','G','M','U'],
 	['A','E','G','M','N','N'],
 	['A','F','I','R','S','Y'],
-	['B','J','K','Q','X','Z'],
+	['B','J','K','Qu','X','Z'],
 	['C','C','N','S','T','W'],
 	['C','E','I','I','L','T'],
 	['C','E','I','L','P','T'],
@@ -29,7 +29,7 @@ export const five_by_five = [
 export const four_by_four = [
   ['A','A','C','I','O','T'],
   ['A','B','I','L','T','Y'],
-  ['A','B','J','M','O','Q'],
+  ['A','B','J','M','O','Qu'],
   ['A','C','D','E','M','P'],
   ['A','C','E','L','R','S'],
   ['A','D','E','N','V','Z'],
