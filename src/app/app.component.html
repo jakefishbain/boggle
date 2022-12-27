@@ -33,7 +33,7 @@
         <tr *ngFor="let row of bs.rows">
           <td *ngFor="let letter of row">
             <h1
-              class='letter border border-primary rounded-lg text-center'
+              class='letter border border-primary rounded-lg text-center fw-bolder'
               [ngClass]="{'animate__animated animate__rotateIn': bs.timeleft + 2 >= bs.time_entered }"
               [ngStyle]="{'padding': board_size +'px'}"
             >{{letter}}</h1>
