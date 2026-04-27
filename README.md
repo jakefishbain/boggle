@@ -12,7 +12,16 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Run `npm run build` to create a production build. The build artifacts are written to `dist/`.
+
+## Deploying to Vercel
+
+This repository is configured for static deployment on Vercel:
+
+1. Import the repo in Vercel.
+2. Leave framework preset as **Other**.
+3. Vercel uses `npm run vercel-build` and publishes the `dist/` directory (configured in `vercel.json`).
+4. SPA routing is handled by a rewrite to `index.html`.
 
 ## Running unit tests
 
